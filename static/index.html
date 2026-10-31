@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NovelMate predicts and compares novel ratings using machine learning.">
+  <title>NovelMate | Book Rating Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="/"><span class="brand-mark">N</span><span>NovelMate</span></a>
+    <span class="nav-note">MACHINE LEARNING BOOK INSIGHTS</span>
+  </nav>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</div>
+      <h1>Understand a book's<br><em>rating potential.</em></h1>
+      <p>Explore machine-learning predictions for novels using publication and reader-engagement data.</p>
+      <div class="hero-stats">
+        <div><strong id="book-count">—</strong><span>books analyzed</span></div>
+        <div><strong id="model-count">—</strong><span>trained models</span></div>
+        <div><strong>2</strong><span>prediction tasks</span></div>
+      </div>
+    </section>
+
+    <div id="notice" class="notice hidden" role="alert"></div>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><div class="eyebrow">PREDICTION STUDIO</div><h2>Explore a novel</h2></div>
+        <span class="live-pill"><i></i> MODEL API</span>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-task="regression" role="tab">Rating prediction</button>
+        <button class="tab" data-task="classification" role="tab">Rating category</button>
+      </div>
+      <p id="task-description" class="helper">Estimate the novel's average reader rating on a scale of 0 to 5.</p>
+
+      <form id="prediction-form">
+        <div class="form-grid">
+          <label>Publication year <span>Required</span>
+            <input id="original_publication_year" type="number" min="-4000" max="2100" value="2000" required>
+          </label>
+          <label>Number of editions <span>Required</span>
+            <input id="books_count" type="number" min="0" value="50" required>
+          </label>
+          <label>Reader ratings <span>Required</span>
+            <input id="ratings_count" type="number" min="0" value="50000" required>
+          </label>
+          <label>Total work ratings <span>Required</span>
+            <input id="work_ratings_count" type="number" min="0" value="60000" required>
+          </label>
+          <label>Written reviews <span>Required</span>
+            <input id="work_text_reviews_count" type="number" min="0" value="3000" required>
+          </label>
+          <label>Book language <span>Required</span>
+            <select id="language_code"><option value="unknown">Unknown</option></select>
+          </label>
+        </div>
+        <div class="action-row">
+          <label class="model-select">Machine-learning model
+            <select id="algorithm"><option value="all">Compare all models</option></select>
+          </label>
+          <button id="predict-button" class="primary" type="submit">Generate prediction <span>↗</span></button>
+        </div>
+      </form>
+      <div id="result" class="result-area" aria-live="polite"></div>
+    </section>
+
+    <section class="performance">
+      <div class="section-heading">
+        <div><div class="eyebrow">MODEL EVALUATION</div><h2>Performance overview</h2></div>
+        <span class="muted-label">Held-out test data</span>
+      </div>
+      <p class="helper">These scores show how the models performed on test data that was not used during training.</p>
+      <div class="metric-grid">
+        <article class="metric-card"><div class="metric-top">REGRESSION</div><h3>Rating prediction</h3><div id="regression-metrics" class="table-wrap">Loading model scores…</div></article>
+        <article class="metric-card"><div class="metric-top">CLASSIFICATION</div><h3>Rating category</h3><div id="classification-metrics" class="table-wrap">Loading model scores…</div></article>
+      </div>
+    </section>
+    <footer><span class="brand small"><span class="brand-mark">N</span> NovelMate</span><span>Academic full-stack machine-learning project · Predictions are estimates, not guarantees.</span></footer>
+  </main>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
